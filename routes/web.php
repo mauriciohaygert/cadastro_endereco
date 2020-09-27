@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EnderecosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [EnderecosController::class, 'index'])->name('listar_enderecos');
+Route::get('/enderecos', [EnderecosController::class, 'create'])->name('form_criar_endereco');
+Route::post('/enderecos', [EnderecosController::class, 'store']);
+Route::delete('/enderecos/{id}', [EnderecosController::class, 'destroy']);
+
