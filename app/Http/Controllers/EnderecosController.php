@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class EnderecosController extends Controller
 {
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $enderecos = Endereco::query()
             ->orderBy('endereco')
             ->get();
@@ -28,6 +29,34 @@ class EnderecosController extends Controller
             ->flash(
                 'mensagem',
                 "O endereço '{$endereco->endereco}, {$endereco->numero}' foi criado com sucesso."
+            );
+
+        return redirect()->route('listar_enderecos');
+    }
+
+    public function show(Request $request)
+    {
+        $endereco = Endereco::find($request->id);
+        if ($endereco) {
+            return view('enderecos.update', compact('endereco'));
+        } else {
+            $request->session()
+                ->flash(
+                    'mensagem',
+                    "Endereço inexistente"
+                );
+            return redirect()->route('listar_enderecos');
+        }
+    }
+
+    public function update(Request $request)
+    {
+        $endereco = Endereco::find($request->id)
+            ->update($request->all());
+        $request->session()
+            ->flash(
+                'mensagem',
+                "O endereço '{$request->endereco}, {$request->numero}' foi alterado com sucesso."
             );
 
         return redirect()->route('listar_enderecos');

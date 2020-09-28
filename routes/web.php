@@ -17,5 +17,6 @@ use App\Http\Controllers\EnderecosController;
 Route::get('/', [EnderecosController::class, 'index'])->name('listar_enderecos');
 Route::get('/enderecos', [EnderecosController::class, 'create'])->name('form_criar_endereco');
 Route::post('/enderecos', [EnderecosController::class, 'store']);
+Route::get('/enderecos/{id}', [EnderecosController::class, 'show']);
+Route::patch('/enderecos/{id}', [EnderecosController::class, 'update']);
 Route::delete('/enderecos/{id}', [EnderecosController::class, 'destroy']);
-

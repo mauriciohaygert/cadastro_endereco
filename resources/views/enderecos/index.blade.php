@@ -17,7 +17,7 @@ Endereços
 <ul class="list-group">
     @foreach($enderecos as $endereco)
     <li class="list-group-item d-flex justify-content-between align-items-center">
-        {{ $endereco->cep }}
+        <a href="/enderecos/{{ $endereco->id }}">{{ $endereco->id }}) {{ $endereco->cep }} - {{ $endereco->endereco }}, {{ $endereco->numero }} - {{ $endereco->cidade }}/{{ $endereco->uf }}</a>
         <form method="post" action="/enderecos/{{ $endereco->id }}"
               onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($endereco->cep) }}?')">
             @csrf

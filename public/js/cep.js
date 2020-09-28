@@ -61,7 +61,7 @@
         } //end if.
         else {
             //cep sem valor, limpa formulário.
-            limpa_formulário_cep();
+            limpa_form_endereco();
         }
     };
 
